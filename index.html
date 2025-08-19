@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finance & Analytics – RevealJS Deck</title>
+  <!-- Reveal.js core CSS & theme via CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@5/dist/theme/black.css" id="theme" />
+  <!-- Code highlight styles -->
+  <link rel="stylesheet" href="https://unpkg.com/highlight.js@11.9.0/styles/github.min.css">
+  <style>
+    .email-badge { position: absolute; right: 20px; bottom: 20px; font-size: .9rem; opacity: .9; }
+    .title-accent { font-weight: 700; letter-spacing: .02em; }
+    footer { position: absolute; left: 20px; bottom: 20px; font-size: .8rem; opacity: .7; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title Slide -->
+      <section>
+        <h1 class="title-accent">Finance & Analytics</h1>
+        <h3>Quick Tour with RevealJS</h3>
+        <p class="fragment">Markdown, code, math, and notes—ready for GitHub Pages.</p>
+        <aside class="notes">
+          Welcome! Use the <strong>S key</strong> to open speaker view. This deck demonstrates:
+          a Markdown slide, fragments for animation, syntax-highlighted code, and KaTeX math.
+          The email badge shows your contact on every slide.
+        </aside>
+      </section>
+
+      <!-- Markdown Slide (requirement: at least one slide written in Markdown) -->
+      <section data-markdown>
+        <textarea data-template>
+### Why RevealJS for Analysts?
+
+- Write slides in **Markdown**
+- Add **animated fragments** for storytelling
+- Embed **code** with syntax highlighting
+- Typeset **equations** using $\LaTeX$
+- Publish instantly on **GitHub Pages**
+
+> Tip: Press <kbd>?</kbd> during the show for keyboard shortcuts.
+
+Notes:
+- This is a full Markdown slide defined inside a `<textarea>`.
+- In speaker view, these lines appear as notes beneath the slide.
+        </textarea>
+      </section>
+
+      <!-- Animated fragments -->
+      <section>
+        <h2>Key Levers for Print Ops</h2>
+        <p class="fragment">1) Input costs (newsprint)</p>
+        <p class="fragment">2) Process efficiency (reel changeover & wastage)</p>
+        <p class="fragment">3) Output strategy (circulation vs. returns)</p>
+        <aside class="notes">Introduce items one-by-one with fragments to keep focus.</aside>
+      </section>
+
+      <!-- Code sample with syntax highlighting -->
+      <section>
+        <h2>Sample: Net Profit in Python</h2>
+<pre><code class="language-python">from dataclasses import dataclass
+
+@dataclass
+class PrintRun:
+    copies: int
+    price: float
+    cost_per_copy: float
+
+    def profit(self, returns_rate=0.08):
+        sold = int(self.copies * (1 - returns_rate))
+        revenue = sold * self.price
+        cost = self.copies * self.cost_per_copy
+        return revenue - cost
+
+run = PrintRun(copies=120000, price=6.0, cost_per_copy=3.9)
+print(f"Estimated profit: ₹{run.profit():,.0f}")</code></pre>
+        <aside class="notes">Explain that highlight.js picks up the language via the class.
+          In real projects, keep formulas separate and tested.</aside>
+      </section>
+
+      <!-- Math (financial formulas) -->
+      <section>
+        <h2>Finance Math</h2>
+        <p>Net Present Value (NPV):</p>
+        <p>\[\mathrm{NPV} = \sum_{t=1}^{T} \frac{CF_t}{(1+r)^t} - C_0\]</p>
+        <p>Capital Asset Pricing Model (CAPM):</p>
+        <p>\[\mathbb{E}[R_i] = R_f + \beta_i\big(\mathbb{E}[R_m] - R_f\big)\]</p>
+        <aside class="notes">Use examples relevant to your audience.
+          Mention discount rate selection and sensitivity analysis.</aside>
+      </section>
+
+      <!-- Mixed: Markdown inside, plus speaker notes -->
+      <section data-markdown>
+        <textarea data-template>
+### Call to Action
+
+- Fork the repo
+- Edit `index.html`
+- Push to `main`
+- Enable **GitHub Pages**
+
+**Contact:** 23f3002034@ds.study.iitm.ac.in
+
+Notes:
+Use this slide to summarize the publishing steps before the live demo.
+        </textarea>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Email badge shown on all slides -->
+  <div class="email-badge">23f3002034@ds.study.iitm.ac.in</div>
+  <footer>RevealJS • GitHub Pages Ready</footer>
+
+  <!-- Scripts: Reveal core + plugins (Markdown, Highlight, Notes, Math/KaTeX) -->
+  <script src="https://unpkg.com/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/markdown/markdown.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/highlight/highlight.js"></script>
+
+  <!-- KaTeX assets for math plugin -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script src="https://unpkg.com/reveal.js@5/plugin/math/math.js"></script>
+
+  <script>
+    // Initialize Reveal
+    const deck = new Reveal({
+      hash: true,
+      slideNumber: true,
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ],
+      // Optional: tweak display
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+    });
+    deck.initialize();
+  </script>
+</body>
+</html>
